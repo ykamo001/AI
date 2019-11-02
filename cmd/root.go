@@ -24,9 +24,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "feature-selection",
-	Short: "Service that finds best features for classification",
-	Long:  `Service that finds best features for classification.`,
+	Use:   "ai",
+	Short: "Service that runs all internal AI projects",
+	Long:  `Service holds an AI project that finds best features for classification.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if viper.IsSet("SUBCOMMAND") {
 			switch viper.GetString("SUBCOMMAND") {
@@ -75,7 +75,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.feature-selection.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ai.yaml)")
 
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
@@ -93,9 +93,9 @@ func initConfig() {
 			os.Exit(1)
 		}
 
-		// Search config in home directory with name ".feature-selection" (without extension).
+		// Search config in home directory with name ".ai" (without extension).
 		viper.AddConfigPath(home)
-		viper.SetConfigName(".feature-selection")
+		viper.SetConfigName(".ai")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match

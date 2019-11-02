@@ -2,7 +2,7 @@
 
 include build/makefiles/buildvars.mk
 
-APPLICATION := feature-selection
+APPLICATION := ai
 
 build: setup
 	go build \
