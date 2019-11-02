@@ -3,6 +3,7 @@
 include build/makefiles/buildvars.mk
 
 APPLICATION := ai
+SERVICES := featureselection
 
 build: setup
 	go build \
@@ -15,7 +16,7 @@ integration_test:
 	go test ./... -tags integration -v GOCACHE=off
 
 
-setup: setup_vendor
+setup: setup_vendor services
 
 setup_vendor:
 	@git config --global -l | grep -q 'url.git@github.com:.insteadof=https://github.com/' \
@@ -24,3 +25,6 @@ setup_vendor:
 		&& echo \
 		&& echo 'git config --global --add url."git@github.com:".insteadOf "https://github.com"')
 	go mod vendor
+
+services:
+	protoc --proto_path=$(GOPATH)/src:. --twirp_out=. --go_out=. ./rpc/featureselection/featureselection.proto;

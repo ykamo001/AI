@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package feature_selection;
+option go_package = "featureselectionservice";
+
+service FeatureSelection {
+    rpc UploadData (UploadDataRequest) returns (Empty);
+}
+
+message Empty{}
+
+message UploadDataRequest{
+    string file = 1; //required
+}
