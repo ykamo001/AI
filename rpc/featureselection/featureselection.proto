@@ -10,5 +10,5 @@ service FeatureSelection {
 message Empty{}
 
 message UploadDataRequest{
-    string file = 1; //required
+    string file = 1;
 }

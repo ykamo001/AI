@@ -1,7 +1,12 @@
 package cmd
 
 import (
+	"net/http"
+
+	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
+	"github.com/ykamo001/ai/internal/featureselection"
+	featureselectionservice "github.com/ykamo001/ai/rpc/featureselection"
 )
 
 // serverCmd represents the server command
@@ -19,5 +24,12 @@ func init() {
 func runServer(cmd *cobra.Command, args []string) {
 	logger := setupLogger()
 
-	logger.Info("hello world")
+	router := mux.NewRouter().StrictSlash(true)
+
+	featureSelectionProvider := featureselection.NewProvider(logger)
+	featureSelectionServer := featureselectionservice.NewFeatureSelectionServer(featureSelectionProvider, nil)
+	router.PathPrefix(featureSelectionServer.PathPrefix()).Handler(featureSelectionServer)
+
+	err := http.ListenAndServe(":8080", router)
+	logger.Error(err)
 }
