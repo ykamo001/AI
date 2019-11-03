@@ -16,3 +16,6 @@ ai
 vendor/
 *.pb.go
 *.twirp.go
+
+# IDE
+.idea

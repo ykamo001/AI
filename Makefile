@@ -3,7 +3,7 @@
 include build/makefiles/buildvars.mk
 
 APPLICATION := ai
-SERVICES := featureselection
+SERVICES := eightpuzzle
 
 build: setup
 	go build \
@@ -27,4 +27,4 @@ setup_vendor:
 	go mod vendor
 
 services:
-	protoc --proto_path=$(GOPATH)/src:. --twirp_out=. --go_out=. ./rpc/featureselection/featureselection.proto;
+	protoc --proto_path=$(GOPATH)/src:. --twirp_out=. --go_out=. ./rpc/eightpuzzle/eightpuzzle.proto;

@@ -5,15 +5,16 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
-	"github.com/ykamo001/ai/internal/featureselection"
-	featureselectionservice "github.com/ykamo001/ai/rpc/featureselection"
+	"github.com/ykamo001/ai/internal/eightpuzzle"
+	"github.com/ykamo001/ai/request"
+	eightpuzzleservice "github.com/ykamo001/ai/rpc/eightpuzzle"
 )
 
 // serverCmd represents the server command
 var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "Runs the server",
-	Long:  `Server for the ai service.`,
+	Long:  `Server for the AI service.`,
 	Run:   runServer,
 }
 
@@ -23,13 +24,12 @@ func init() {
 
 func runServer(cmd *cobra.Command, args []string) {
 	logger := setupLogger()
+	router := mux.NewRouter().StrictSlash(false)
 
-	router := mux.NewRouter().StrictSlash(true)
+	eightPuzzleProvider := eightpuzzle.NewProvider(logger)
+	eightPuzzleServer := eightpuzzleservice.NewEightPuzzleServer(eightPuzzleProvider, nil)
+	router.PathPrefix(eightPuzzleServer.PathPrefix()).Handler(eightPuzzleServer)
 
-	featureSelectionProvider := featureselection.NewProvider(logger)
-	featureSelectionServer := featureselectionservice.NewFeatureSelectionServer(featureSelectionProvider, nil)
-	router.PathPrefix(featureSelectionServer.PathPrefix()).Handler(featureSelectionServer)
-
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(":8080", request.WithRequestHeaders(router))
 	logger.Error(err)
 }

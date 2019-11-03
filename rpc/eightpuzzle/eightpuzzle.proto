@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package eight_puzzle;
+option go_package = "eightpuzzleservice";
+
+service EightPuzzle {
+    rpc FindPath (FindPathRequest) returns (FindPathResponse);
+}
+
+message Empty{}
+
+message FindPathRequest{
+    string initial = 1;
+    string goal = 2;
+}
+
+message FindPathResponse{
+    string path = 1; //required
+}
