@@ -1,4 +1,4 @@
-module github.com/ykamo001/ai
+module github.com/ykamo001/backend
 
 go 1.13
 

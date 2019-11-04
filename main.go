@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ykamo001/ai/cmd"
+	"github.com/ykamo001/backend/cmd"
 )
 
 func main() {

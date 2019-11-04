@@ -99,3 +99,19 @@ When this particular error is encountered, we should log it, and we will message
 
 We can tell exactly where this error happened, what the state of the server and function was, what time it happened, and which request it can be tied back to. 
 ## [Testing](#testing)
+Testing should be a crucial part of development and no code should be shipped unless there are tests written to cover their use.
+We should also be able to let any developer test any particular test case without having them run all or none, much like table testing.
+We can still leverage the advantages of table-testing, but restructure the way the tests are invoked. 
+
+Let's take a look at the integration tests for the `MS Paint` [server handler](https://github.com/ykamo001/backend/blob/master/internal/paint/provider_integration_test.go).
+Each one of these tests can be invoked separately along with all of them at once.
+
+For running all tests on the provider:
+`go test ./internal/paint -v --tags=integration -run Provider`
+
+For running a specific test case on the provider:
+`go test ./internal/paint -v --tags=integration -run Provider/success`
+`go test ./internal/paint -v --tags=integration -run Provider/invalid_x_input`
+
+For running all test:
+`go test ./... -tags integration`

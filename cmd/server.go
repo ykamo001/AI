@@ -5,9 +5,9 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
-	"github.com/ykamo001/ai/internal/paint"
-	"github.com/ykamo001/ai/request"
-	paintservice "github.com/ykamo001/ai/rpc/paint"
+	"github.com/ykamo001/backend/internal/paint"
+	"github.com/ykamo001/backend/request"
+	paintservice "github.com/ykamo001/backend/rpc/paint"
 )
 
 // serverCmd represents the server command

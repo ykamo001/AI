@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/sirupsen/logrus"
 	"github.com/twitchtv/twirp"
-	paintservice "github.com/ykamo001/ai/rpc/paint"
+	paintservice "github.com/ykamo001/backend/rpc/paint"
 )
 
 type Provider interface {

@@ -4,7 +4,7 @@ package paint_test
 
 import (
 	"fmt"
-	paintservice "github.com/ykamo001/ai/rpc/paint"
+	paintservice "github.com/ykamo001/backend/rpc/paint"
 	"testing"
 )
 

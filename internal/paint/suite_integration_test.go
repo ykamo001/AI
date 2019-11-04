@@ -6,7 +6,7 @@ import (
 	"context"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
-	"github.com/ykamo001/ai/internal/paint"
+	"github.com/ykamo001/backend/internal/paint"
 	"os"
 )
 
