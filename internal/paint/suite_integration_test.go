@@ -1,21 +1,21 @@
 // +build integration
 
-package eightpuzzle_test
+package paint_test
 
 import (
 	"context"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
-	"github.com/ykamo001/ai/internal/eightpuzzle"
+	"github.com/ykamo001/ai/internal/paint"
 	"os"
 )
 
-var provider eightpuzzle.Provider
+var provider paint.Provider
 
 func init() {
 	logger := setupLogger()
 
-	provider = eightpuzzle.NewProvider(logger)
+	provider = paint.NewProvider(logger)
 }
 
 func setupLogger() *logrus.Logger {

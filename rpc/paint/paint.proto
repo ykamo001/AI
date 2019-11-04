@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package paint;
+option go_package = "paintservice";
+
+service Paint {
+    rpc FillIn (FillInRequest) returns (FillInResponse);
+}
+
+message Empty{}
+
+message InternalArray {
+    repeated string array = 1;
+}
+
+message FillInRequest{
+    repeated InternalArray matrix = 1;
+    string value = 2;
+    int64 x = 3;
+    int64 y = 4;
+}
+
+message FillInResponse{
+    repeated InternalArray matrix = 1; //required
+}

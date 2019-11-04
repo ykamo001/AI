@@ -5,9 +5,9 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
-	"github.com/ykamo001/ai/internal/eightpuzzle"
+	"github.com/ykamo001/ai/internal/paint"
 	"github.com/ykamo001/ai/request"
-	eightpuzzleservice "github.com/ykamo001/ai/rpc/eightpuzzle"
+	paintservice "github.com/ykamo001/ai/rpc/paint"
 )
 
 // serverCmd represents the server command
@@ -26,9 +26,9 @@ func runServer(cmd *cobra.Command, args []string) {
 	logger := setupLogger()
 	router := mux.NewRouter().StrictSlash(false)
 
-	eightPuzzleProvider := eightpuzzle.NewProvider(logger)
-	eightPuzzleServer := eightpuzzleservice.NewEightPuzzleServer(eightPuzzleProvider, nil)
-	router.PathPrefix(eightPuzzleServer.PathPrefix()).Handler(eightPuzzleServer)
+	paintProvider := paint.NewProvider(logger)
+	paintServer := paintservice.NewPaintServer(paintProvider, nil)
+	router.PathPrefix(paintServer.PathPrefix()).Handler(paintServer)
 
 	err := http.ListenAndServe(":8080", request.WithRequestHeaders(router))
 	logger.Error(err)
