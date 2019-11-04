@@ -10,7 +10,6 @@ At this point in time, the repository holds best practices for logging, testing,
 ## Table of Contents
 * [Requests](#requests)
 * [Logs](#logs)
-* [Errors](#errors)
 * [Testing](#testing)
 
 
